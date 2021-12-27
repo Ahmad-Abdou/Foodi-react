@@ -1,0 +1,151 @@
+.home-container {
+  background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.596),
+      rgba(0, 0, 0, 0.534)
+    ),
+    url("../assets/images/pizzas/pizza-background.jpg");
+  height: 100vh;
+  width: 95%;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  margin-left: 50px;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.home-header {
+  position: absolute;
+  top: 10%;
+  left: 30%;
+  letter-spacing: 100px;
+  text-transform: uppercase;
+  color: #c70039;
+  text-shadow: 3px 3px 2px #ffffff;
+  font-size: 100px;
+  user-select: none;
+}
+@media screen and (max-width: 1665px) {
+  .home-header {
+    font-size: 70px;
+    left: 30%;
+  }
+}
+@media screen and (max-width: 1450px) {
+  .home-header {
+    font-size: 50px;
+    left: 30%;
+  }
+}
+@media screen and (max-width: 998px) {
+  .home-container {
+    width: 90%;
+  }
+  .home-header {
+    font-size: 40px;
+    left: 25%;
+    letter-spacing: 70px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .home-container {
+    width: 85%;
+    height: 80vh;
+  }
+  .home-header {
+    font-size: 30px;
+    letter-spacing: 20px;
+    left: 30%;
+    top: 20%;
+  }
+}
+@media screen and (max-width: 320px) {
+  .home-header {
+    font-size: 30px;
+    letter-spacing: 10px;
+    left: 25%;
+  }
+}
+
+.order-btn {
+  padding: 15px;
+  position: absolute;
+  bottom: 30%;
+  left: 46%;
+  text-align: center;
+  width: 280px;
+  font-size: 25px;
+  text-transform: uppercase;
+  color: white;
+  transition: all 0.3s 0s;
+  text-shadow: 2px 1px 3px black;
+  user-select: none;
+  background-color: #c70039;
+  box-shadow: 3px 3px 6px black;
+  letter-spacing: 6px;
+  font-weight: 800;
+}
+
+.order-btn:active:after {
+  transform: translateY(10px);
+}
+.order-btn:active:before {
+  transform: translateY(-10px);
+}
+.order-btn:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 0;
+  border: 2px solid white;
+  transition: all 0.3s;
+  opacity: 0;
+}
+.order-btn:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 0;
+  width: 0;
+  border: 2px solid white;
+  transition: all 0.3s;
+  opacity: 0;
+}
+.order-btn:hover:before,
+.order-btn:hover:after {
+  width: 100%;
+  opacity: 1;
+}
+.order-btn:hover {
+  cursor: pointer;
+  color: white;
+  background-color: #c70039;
+  text-shadow: 1px 1px black;
+  box-shadow: 3px 3px 3px black;
+  transition-delay: 0.4s;
+  font-weight: 600;
+  transform: translateY(-5px);
+}
+@media screen and (max-width: 998px) {
+  .order-btn {
+    left: 35%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .order-btn {
+    font-size: 20px;
+    padding: 15px;
+    width: 150px;
+    left: 35%;
+  }
+}
+@media screen and (max-width: 320px) {
+  .order-btn {
+    font-size: 20px;
+    left: 25%;
+  }
+}

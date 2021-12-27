@@ -1,0 +1,56 @@
+.error-container {
+  position: absolute;
+  left: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 80%;
+  height: 90%;
+  font-size: 60px;
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  color: #fff;
+}
+.error-img {
+  border: none;
+  height: 80vh;
+  border-radius: 100%;
+}
+.error-btn {
+  background-color: #c70039;
+  border: none;
+  position: absolute;
+  top: 90%;
+  color: white;
+  padding: 20px;
+  font-size: 25px;
+}
+.error-btn:hover {
+  cursor: pointer;
+}
+.error-btn:hover .error-btn-text {
+  opacity: 0;
+  transition: all 0.5s 0s;
+}
+.error-btn:before {
+  content: "Back To Home";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0%;
+  height: 0%;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  align-items: center;
+  background-color: gold;
+  transform: translate(-50%, -50%);
+  transition: all 0.5s;
+  overflow: hidden;
+}
+.error-btn:hover:before {
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+  transition: all 0.5s;
+}
