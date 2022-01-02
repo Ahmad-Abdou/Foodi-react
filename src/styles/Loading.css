@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Island+Moments&family=Lobster&display=swap");
+
+.loading {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  left: 45%;
+  top: 35%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loading:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border-radius: 90%;
+  border-left: 2px solid black;
+  animation: rotating 1s linear infinite;
+}
+
+@keyframes rotating {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loading-text {
+  text-transform: uppercase;
+  font-family: "Island Moments", cursive;
+  font-family: "Lobster", cursive;
+  font-size: 45px;
+  font-weight: 800;
+}

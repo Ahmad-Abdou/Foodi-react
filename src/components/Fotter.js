@@ -5,9 +5,7 @@ const Fotter = () => {
   return (
     <div className="fotter-container">
       {" "}
-      <div className="fotter-grid-col">
-        © 2022 FOODI. All Rights Reserved 2021
-      </div>
+      <div className="fotter-grid-col">© 2022 FOODI. All Rights Reserved</div>
       <div className="fotter-row-1">
         <span>PHONE:</span> 0467XXXXXXXX.
       </div>

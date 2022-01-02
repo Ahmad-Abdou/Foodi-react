@@ -7,6 +7,7 @@
   background-color: rgb(252, 233, 233);
   transition: all 0.5s;
 }
+
 .sidebar-header {
   position: relative;
   top: 5%;
@@ -22,6 +23,13 @@
   left: 20%;
   top: 10%;
   font-size: 25px;
+}
+.delivery-price {
+  position: absolute;
+  top: 10%;
+  left: 42%;
+  color: #c70039;
+  text-shadow: 1px 1px 3px black;
 }
 input[type="checkbox"] {
   height: 0;
@@ -75,7 +83,9 @@ input:checked + .delivery-label:after {
   animation: moving 0.2s infinite linear;
   color: #c70039;
 }
-
+.delivery-small {
+  font-weight: 700;
+}
 @keyframes moving {
   0% {
     transform: translateY(0px);

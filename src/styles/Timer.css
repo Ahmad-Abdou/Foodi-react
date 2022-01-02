@@ -1,0 +1,12 @@
+.timer {
+  display: flex;
+  justify-content: space-around;
+  font-family: sans-serif;
+  text-align: center;
+  gap: 10px;
+  margin-bottom: 50px;
+}
+
+.time {
+  font-size: 32px;
+}

@@ -1,0 +1,95 @@
+.notification-container {
+  position: fixed;
+  top: 3%;
+  right: 0%;
+  width: 95%;
+  height: 10vh;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  z-index: 10;
+  animation: visable 3s;
+}
+.notification-added,
+.notification-removed,
+.notification-edited,
+.notification-payment,
+.notification-warning,
+.notification-added-to-cart {
+  width: 90%;
+  position: relative;
+  color: white;
+  text-shadow: 1px 1px 3px black;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: capitalize;
+  overflow: hidden;
+  box-shadow: 3px 3px 3px black;
+  padding: 30px;
+  font-weight: 700;
+}
+.notification-added:before,
+.notification-removed:before,
+.notification-edited:before,
+.notification-payment:before,
+.notification-warning:before,
+.notification-added-to-cart:before {
+  content: " ";
+  position: absolute;
+  height: 10%;
+  width: 0%;
+  bottom: 0;
+  left: 0;
+  background-color: rgb(255, 255, 255);
+  animation: moving-line 3s linear;
+}
+.notification-added-to-cart {
+  grid-column: 1;
+  background-color: #fafafa;
+  color: #cc2b58;
+}
+.notification-added-to-cart:before {
+  background-color: #cc2b58;
+}
+.notification-added {
+  grid-column: 1;
+  background-color: #2fd653;
+}
+.notification-removed {
+  grid-column: 2;
+  background-color: #cc2b58;
+}
+.notification-edited {
+  grid-column: 3;
+  background-color: #4d9aff;
+}
+.notification-payment {
+  grid-column: 4;
+  background-color: rgb(245, 101, 202);
+}
+.notification-warning {
+  grid-column: 6;
+  background-color: #f1ff34;
+}
+
+@keyframes moving-line {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@keyframes visable {
+  0% {
+    width: 95%;
+  }
+  90% {
+    width: 95%;
+  }
+  100% {
+    width: 0%;
+  }
+}

@@ -24,6 +24,7 @@
   color: white;
   padding: 20px;
   font-size: 25px;
+  text-shadow: 1px 1px 1px black;
 }
 .error-btn:hover {
   cursor: pointer;
@@ -33,7 +34,7 @@
   transition: all 0.5s 0s;
 }
 .error-btn:before {
-  content: "Back To Home";
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -41,16 +42,36 @@
   height: 0%;
   display: flex;
   justify-content: center;
-  opacity: 0;
+  opacity: 1;
   align-items: center;
-  background-color: gold;
+  background-color: rgb(255, 255, 255);
   transform: translate(-50%, -50%);
   transition: all 0.5s;
   overflow: hidden;
+  color: #c70039;
+}
+.error-btn:after {
+  content: "Back To Home";
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s 0s;
+  font-weight: 600;
 }
 .error-btn:hover:before {
   height: 100%;
   width: 100%;
   opacity: 1;
   transition: all 0.5s;
+  border: 2px solid #c70039;
+}
+.error-btn:hover:after {
+  transition: all 0.5s;
+  color: #c70039;
+  text-shadow: 1px 1px 1px black;
 }

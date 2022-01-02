@@ -24,8 +24,11 @@
   grid-column: 2/3;
 }
 .grid-col-center {
+  margin-top: 15px;
   grid-row: 2;
   grid-column: 3/5;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
 }
 .grid-col-top-left {
   grid-row: 1;
@@ -57,6 +60,7 @@
 }
 .single-product-image {
   height: 50px;
+  margin-top: 20px;
 }
 .product-plus-icon:hover,
 .product-minus-icon:hover {
@@ -70,7 +74,13 @@
   font-size: 15px;
 }
 .single-product-price {
+  font-size: 17px;
   font-weight: 700;
   color: #c70039;
   text-shadow: 1px 1px 1px black;
+  grid-row: 1;
+}
+.total-price-for-single-item {
+  font-weight: 700;
+  grid-row: 2;
 }

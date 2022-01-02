@@ -2,7 +2,7 @@
   height: 100vh;
   padding: 0px 80px;
   margin: 40px;
-  width: 100%;
+  width: 90%;
   position: relative;
   display: grid;
   grid-template-columns: repeat(4, 1fr);

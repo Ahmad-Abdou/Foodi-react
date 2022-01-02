@@ -6,13 +6,6 @@ const Products = () => {
   return (
     <div className="product-container">
       <Card></Card>
-      <Card></Card>
-      <Card></Card>
-      <Card></Card>
-      <Card></Card>
-      <Card></Card>
-      <Card></Card>
-      <Card></Card>
     </div>
   );
 };
