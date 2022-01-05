@@ -1,8 +1,9 @@
 .cart-container {
   background-color: rgb(252, 233, 233);
   height: 100vh;
-  max-width: 95%;
+  max-width: 85%;
   position: relative;
+  left: 10%;
   padding: 30px;
 }
 .cart-body {

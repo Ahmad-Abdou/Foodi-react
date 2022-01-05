@@ -53,7 +53,7 @@ const Sidebar = () => {
             </div>
           ) : (
             <div className="sidebar-footer">
-              <h3>Sum : {getprice} $</h3>
+              <h3>Sum : {Math.round(getprice * 100) / 100} $</h3>
               <Link to="/cart">
                 <button className="btn checkout-btn">Checkout</button>
               </Link>

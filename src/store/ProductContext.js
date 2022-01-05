@@ -11,6 +11,7 @@ const ProductContext = ({ children }) => {
     image: "",
     type: "",
     size: "",
+    ingredients: [],
   });
   const [selectedProduct, setSelectedProduct] = useState([]);
   const [noDuplicateProducts, setNoDuplicateProducts] = useState([]);
@@ -21,11 +22,14 @@ const ProductContext = ({ children }) => {
   const [notification, setNotification] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [editingdProduct, setEditingdProduct] = useState({
+    id: "",
     image: "",
     name: "",
     price: 0,
-    discount: "",
+    discountAmount: 0.0,
+    discount: "NO",
   });
+
   const getprice = noDuplicateProducts.reduce((previous, current) => {
     let singleItem = current.price * current.quantity;
     let sum = singleItem + previous;
@@ -47,7 +51,6 @@ const ProductContext = ({ children }) => {
 
   const EditProduct = (id) => {
     let myProduct = products.find((product) => product.id === id);
-    console.log(myProduct);
     setEditingdProduct(myProduct);
   };
 

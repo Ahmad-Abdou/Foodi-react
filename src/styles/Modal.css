@@ -8,7 +8,7 @@
 }
 .modal-content {
   width: 70%;
-  height: 75%;
+  height: 65%;
   position: absolute;
   top: 0;
   left: 15%;
@@ -35,69 +35,85 @@
   gap: 20px;
 }
 .modal-image {
-  width: 90%;
+  width: 95%;
   grid-column: 1/4;
-  grid-row: 2/10;
+  grid-row: 1/10;
   margin-left: 30px;
 }
+
 .product-orginal-name,
 .product-orginal-price,
 .product-orginal-discount {
-  position: absolute;
-  left: 50%;
+  grid-column: 4/5;
   background-color: #c70039;
   color: white;
-  padding: 7px;
+  padding: 10px;
   text-shadow: 1px 1px 3px black;
+  width: 100%;
+  height: 100%;
+  align-self: center;
+  text-align: center;
+  box-shadow: 3px 3px 3px black;
+  font-size: 18px;
 }
 .product-orginal-name {
-  bottom: 75%;
+  grid-row: 1;
 }
 .product-orginal-price {
-  bottom: 65%;
-  left: 50%;
+  grid-row: 3;
 }
 .product-orginal-discount {
-  bottom: 55%;
-  left: 50%;
+  grid-row: 5;
 }
-.modal-edit-btn {
-  grid-row: 8;
-  grid-column: 6/8;
+.modal-edit-btn,
+.modal-discount-btn {
+  grid-row: 3;
+  grid-column: 6/7;
   padding: 15px;
-  font-size: 20px;
+  font-size: 10px;
   width: 90%;
+  height: 100%;
   background-color: #c70039;
   color: white;
   font-weight: 700;
   text-shadow: 1px 1px 3px black;
   border: none;
   text-transform: uppercase;
+  align-self: center;
+  text-align: center;
+  box-shadow: 3px 3px 3px black;
 }
-.modal-edit-btn:hover {
+.modal-discount-btn {
+  grid-row: 5;
+  grid-column: 6/7;
+}
+
+.modal-edit-btn:hover,
+.modal-discount-btn:hover {
   cursor: pointer;
 }
 .modal-inputs-1,
 .modal-inputs-2,
 .modal-inputs-3 {
-  grid-row: 2;
-  grid-column: 6/8;
-  padding: 10px;
+  grid-row: 1;
+  grid-column: 5/6;
   border: none;
-  border-bottom: 3px solid grey;
+  padding: 10px;
+  border-bottom: 2px solid grey;
   font-weight: 700;
   margin-right: 40px;
   background-color: transparent;
   text-align: center;
-  font-size: 20px;
+  font-size: 17px;
   text-transform: capitalize;
   text-shadow: 1px 1px 3px black;
+  height: 100%;
 }
 .modal-inputs-2 {
   grid-row: 3;
-  grid-column: 6/8;
+  grid-column: 5/6;
 }
 .modal-inputs-3 {
-  grid-row: 4;
-  grid-column: 6/8;
+  grid-row: 5;
+  grid-column: 5/6;
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { GrDeliver, GrHome } from "react-icons/gr";
 import "../styles/Order.css";
-import Navigationbar from "../components/Navigationbar";
+
 import { useProductContext } from "../store/ProductContext";
 import Timer from "../components/Timer";
 import Loading from "../components/Loading";

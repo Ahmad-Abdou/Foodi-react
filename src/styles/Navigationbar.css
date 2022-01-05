@@ -1,9 +1,9 @@
 .nav-container {
   position: absolute;
   top: 5%;
-  left: 5%;
-  width: 15%;
-  height: 90vh;
+  left: 3%;
+  width: 12%;
+  height: 75vh;
   z-index: 2;
   text-align: center;
   background-color: transparent;
@@ -18,12 +18,14 @@
 }
 
 .nav-links {
-  width: 0;
-  height: 0;
+  position: absolute;
+  top: 8%;
+  left: -10%;
+  width: 30%;
+  height: 30vh;
   display: grid;
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat(6, 1fr);
   grid-template-columns: repeat(5, 1fr);
-  gap: 30px;
   align-items: center;
   opacity: 0;
   transition: all 0.5s 0.3s;
@@ -37,8 +39,8 @@
 
 .nav-background:before {
   content: "";
-  width: 70%;
-  height: 100%;
+  width: 0%;
+  height: 0%;
   position: absolute;
   left: 5%;
   top: -2%;
@@ -51,24 +53,31 @@
 
 .nav-background:hover:before {
   width: 100%;
-  height: 200%;
+  height: 100%;
   clip-path: circle(73.3% at 48% 48%);
   cursor: pointer;
 }
 .nav-icon {
   height: 80px;
+  position: absolute;
+  top: 0%;
+  left: 35%;
   transition: all 0.5s linear;
 }
 .nav-icon:hover {
   cursor: pointer;
   transform: rotate(360deg);
 }
-
+.nav-icon:hover .nav-container {
+  width: 100%;
+  height: 100vh;
+}
 .nav-item-1:before,
 .nav-item-2:before,
 .nav-item-3:before,
-.nav-item-4:before {
-  content: "Cart";
+.nav-item-4:before,
+.nav-item-5:before {
+  content: "Home";
   width: 100%;
   height: 100%;
   position: absolute;
@@ -85,18 +94,24 @@
   text-transform: uppercase;
   text-shadow: 1px 1px 2px black;
 }
-@media screen and (max-width: 998px) {
-}
+
 .nav-item-2:before {
-  content: "Order";
+  content: "Cart";
 }
 .nav-item-3:before {
-  content: "About";
+  content: "Order";
 }
 .nav-item-4:before {
+  content: "About";
+}
+.nav-item-5:before {
   content: "Contact";
 }
-.nav-item-1 {
+.nav-item-1,
+.nav-item-2,
+.nav-item-3,
+.nav-item-4,
+.nav-item-5 {
   grid-row: 2;
   grid-column: 4;
   font-size: 30px;
@@ -106,52 +121,53 @@
 }
 .nav-item-2 {
   grid-row: 3;
-  font-size: 30px;
   grid-column: 4;
-  color: #c70039;
-  position: relative;
-  text-shadow: 1px 1px 2px black;
 }
 .nav-item-3 {
   grid-row: 4;
-  font-size: 30px;
   grid-column: 4;
-  color: #c70039;
-  position: relative;
-  text-shadow: 1px 1px 2px black;
 }
 .nav-item-4 {
   grid-row: 5;
-  font-size: 30px;
-  grid-column: 4/5;
-  color: #c70039;
-  position: relative;
-  text-shadow: 1px 1px 2px black;
+  grid-column: 4;
+}
+.nav-item-5 {
+  grid-row: 6;
+  grid-column: 4;
 }
 @media screen and (max-width: 1600px) {
   .nav-item-1,
   .nav-item-2,
   .nav-item-3,
-  .nav-item-4 {
-    left: -30px;
+  .nav-item-4,
+  .nav-item-5 {
+    left: 10px;
   }
 }
 @media screen and (max-width: 1270px) {
   .nav-item-1,
   .nav-item-2,
   .nav-item-3,
-  .nav-item-4 {
-    left: -50px;
-    font-size: 25px;
+  .nav-item-4,
+  .nav-item-5 {
+    left: 10px;
+    font-size: 20px;
+  }
+  .nav-icon {
+    font-size: 60px;
   }
 }
 @media screen and (max-width: 998px) {
   .nav-item-1,
   .nav-item-2,
   .nav-item-3,
-  .nav-item-4 {
-    left: -60px;
-    font-size: 20px;
+  .nav-item-4,
+  .nav-item-5 {
+    left: 10px;
+    font-size: 14px;
+  }
+  .nav-icon {
+    font-size: 40px;
   }
 }
 @media screen and (max-width: 768px) {
@@ -160,43 +176,51 @@
     height: 10vh;
     display: grid;
     grid-template-rows: repeat(1, 1fr);
-    grid-template-rows: repeat(7, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     opacity: 1;
     position: absolute;
     top: 2%;
   }
+  .nav-icon {
+    left: 15%;
+  }
   .nav-background:before {
     width: 100%;
-
     position: absolute;
     left: -10%;
   }
   .nav-links {
     grid-row: 1;
     position: relative;
-    top: -15%;
+    top: 2%;
+    gap: 10px;
   }
   .nav-item-1 {
     grid-row: 1;
-    grid-column: 6;
+    grid-column: 24;
   }
   .nav-item-2 {
     grid-row: 1;
-    grid-column: 7;
+    grid-column: 26;
   }
   .nav-item-3 {
     grid-row: 1;
-    grid-column: 8;
+    grid-column: 28;
   }
   .nav-item-4 {
     grid-row: 1;
-    grid-column: 9;
+    grid-column: 30;
+  }
+  .nav-item-5 {
+    grid-row: 1;
+    grid-column: 32;
   }
 }
 .nav-item-1:hover,
 .nav-item-2:hover,
 .nav-item-3:hover,
-.nav-item-4:hover {
+.nav-item-4:hover,
+.nav-item-5:hover {
   cursor: pointer;
   color: white;
 }
@@ -204,7 +228,8 @@
 .nav-item-1:hover:before,
 .nav-item-2:hover:before,
 .nav-item-3:hover:before,
-.nav-item-4:hover:before {
+.nav-item-4:hover:before,
+.nav-item-5:hover:before {
   clip-path: circle(61.9% at 50% 50%);
   transform: translateX(-10%);
   width: 180%;

@@ -11,33 +11,83 @@ const Card = () => {
       {notification && <AddedToCart></AddedToCart>}
       {products.map((product) => {
         // eslint-disable-next-line
-        const { id, name, price, size, type, image } = product;
+        const {
+          id,
+          name,
+          price,
+          size,
+          type,
+          image,
+          discountAmount,
+          ingredients,
+        } = product;
         return (
-          <div key={id} className="card-container">
-            <h1 className="card-header">{name}</h1>
-            <img
-              className="card-image"
-              src={`data:image/jpeg;base64,${image}`}
-              alt={name}
-            />
-            <span className="card-price">{price}$</span>
-            <p className="card-paragraph">
-              <span className="ingredients-span">Tomato</span>
-              <span className="ingredients-span">Salami</span>
-              <span className="ingredients-span">Onion</span>
-              <span className="ingredients-span">Olive</span>
-              <br></br>
-              <span className="ingredients-span">mushroom</span>
-            </p>
-            <button
-              className="btn card-btn"
-              onClick={(e) => {
-                addingProduct(id);
-              }}
-            >
-              Add
-            </button>
-          </div>
+          <>
+            {parseInt(discountAmount) > 0 ? (
+              <div key={id} className="card-container">
+                <h1 className="card-header">{name}</h1>
+                <span className="discount-amount">{discountAmount}</span>
+                <img
+                  className="card-image"
+                  src={`data:image/jpeg;base64,${image}`}
+                  alt={name}
+                />
+
+                <span className="card-old-price">
+                  {" "}
+                  {(
+                    Math.round(
+                      (price / (1 - parseInt(discountAmount) / 100)) * 100
+                    ) / 100
+                  ).toFixed(2)}{" "}
+                  $
+                </span>
+                <span className="card-new-price">
+                  {" "}
+                  {(Math.round(price * 100) / 100).toFixed(2)} $
+                </span>
+                <p className="card-paragraph">
+                  <span className="ingredients-span">{ingredients}</span>
+                </p>
+                <button
+                  className="btn card-btn"
+                  onClick={(e) => {
+                    addingProduct(id);
+                  }}
+                >
+                  Add
+                </button>
+              </div>
+            ) : (
+              <div key={id} className="card-container">
+                <h1 className="card-header">{name}</h1>
+                <img
+                  className="card-image"
+                  src={`data:image/jpeg;base64,${image}`}
+                  alt={name}
+                />
+                <span className="card-price">
+                  {(Math.round(price * 100) / 100).toFixed(2)} $
+                </span>
+                <p className="card-paragraph">
+                  <span className="ingredients-span">Tomato</span>
+                  <span className="ingredients-span">Salami</span>
+                  <span className="ingredients-span">Onion</span>
+                  <span className="ingredients-span">Olive</span>
+                  <br></br>
+                  <span className="ingredients-span">mushroom</span>
+                </p>
+                <button
+                  className="btn card-btn"
+                  onClick={(e) => {
+                    addingProduct(id);
+                  }}
+                >
+                  Add
+                </button>
+              </div>
+            )}
+          </>
         );
       })}
     </>

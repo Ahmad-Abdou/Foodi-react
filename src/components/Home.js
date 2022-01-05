@@ -21,8 +21,8 @@ const Home = () => {
               Order
             </a>
           </div>
-          <Sidebar />
           <Navigationbar></Navigationbar>
+          <Sidebar />
 
           <a className="scrolling-page" name="products">
             {" "}

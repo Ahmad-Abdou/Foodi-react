@@ -13,11 +13,11 @@ const Cart = () => {
   };
   return (
     <>
+      <Navigationbar></Navigationbar>
       {loading ? (
         <Loading></Loading>
       ) : (
         <div className="cart-container">
-          <Navigationbar></Navigationbar>
           <section className="cart-body">
             <article>
               <div className="cart-header-text-container">
