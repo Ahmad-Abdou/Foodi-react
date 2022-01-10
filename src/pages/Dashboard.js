@@ -3,11 +3,11 @@ import { useProductContext } from "../store/ProductContext";
 import axios from "axios";
 import "../styles/Dashboard.css";
 import Modal from "../components/Modal";
-import Loading from "../components/Loading";
 import Added from "../notification/Added";
 import Removed from "../notification/Removed";
 import Select from "react-select";
 import Navigationbar from "../components/Navigationbar";
+import { MyChart } from "./MyChart";
 
 const Dashboard = () => {
   let getIngredient = () => [];
@@ -19,7 +19,6 @@ const Dashboard = () => {
     newProduct,
     setnewProduct,
     setProducts,
-    loading,
   } = useProductContext();
   const [selectedFile, setSelectedFile] = useState(null);
   const [isAdded, setIsAdded] = useState(false);
@@ -64,7 +63,7 @@ const Dashboard = () => {
     axios
       .post(`http://localhost:8080/api/v1/item/upload`, formData, config)
       .then((response) => {
-        console.log(response.data);
+        products.push(response.data);
         setIsAdded(true);
         setTimeout(() => {
           setIsAdded(false);
@@ -77,7 +76,7 @@ const Dashboard = () => {
   const DeleteProduct = (id) => {
     axios.delete(`http://localhost:8080/api/v1/item/${id}`).then((res) => {
       if (res.data != null) {
-        setProducts(products.filter((movie) => movie.id !== id));
+        setProducts(products.filter((product) => product.id !== id));
         setIsDeleted(true);
         setTimeout(() => {
           setIsDeleted(false);
@@ -94,10 +93,11 @@ const Dashboard = () => {
       {isAdded && <Added></Added>}
       {isDeleted && <Removed></Removed>}
       {showModal && <Modal></Modal>}
-      {loading ? (
-        <Loading></Loading>
-      ) : (
-        <div className="dashboard-container">
+      <div className="dashboard-container">
+        <div className="dashboard-form-container">
+          <div className="dashboard-chart">
+            <MyChart></MyChart>
+          </div>
           <form className="dashboard-form-add-items" onSubmit={addItem}>
             <input
               type="text"
@@ -123,12 +123,6 @@ const Dashboard = () => {
               placeholder="size"
               onChange={onChangeHandler}
             />
-            <input
-              type="text"
-              name="ingredients"
-              placeholder="ingredients"
-              onChange={onChangeHandler}
-            />
             <Select
               options={options}
               onChange={handleSelectChange}
@@ -144,54 +138,101 @@ const Dashboard = () => {
             />
             <button type="submit">Add Item</button>
           </form>
-          <div className="all-dashboard-items-container">
-            {products.map((product) => {
-              const {
-                id,
-                name,
-                price,
-                size,
-                type,
-                image,
-                discountAmount,
-                ingredients,
-                index,
-              } = product;
-              return (
-                <div key={id}>
-                  {parseInt(discountAmount) > 0 ? (
+        </div>
+
+        <div className="all-dashboard-items-container">
+          {products.map((product) => {
+            const {
+              id,
+              name,
+              price,
+              size,
+              type,
+              image,
+              discountAmount,
+              ingredients,
+            } = product;
+            return (
+              <div key={id}>
+                {parseInt(discountAmount) > 0 ? (
+                  <div className="card-container">
+                    <h1 className="card-header">{name}</h1>
+                    <span className="discount-amount">{discountAmount}</span>
+                    <img
+                      className="card-image"
+                      src={`data:image/jpeg;base64,${image}`}
+                      alt={name}
+                    />
+
+                    <span className="card-old-price">
+                      {" "}
+                      {(
+                        Math.round(
+                          (price / (1 - parseInt(discountAmount) / 100)) * 100
+                        ) / 100
+                      ).toFixed(2)}{" "}
+                      $
+                    </span>
+                    <span className="card-new-price">
+                      {" "}
+                      {(Math.round(price * 100) / 100).toFixed(2)} $
+                    </span>
+                    <span className="card-type">{type}</span>
+                    <span className="card-size">{size}</span>
+
+                    <p className="card-paragraph">
+                      {ingredients.map((item, index) => {
+                        return (
+                          <span key={index} className="ingredients-span">
+                            {item}
+                          </span>
+                        );
+                      })}
+                    </p>
+                    <button
+                      className="edit-btn"
+                      onClick={() => {
+                        setShowModal(!showModal);
+                        EditProduct(id);
+                      }}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => DeleteProduct(id)}
+                      className="remove-btn"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ) : (
+                  <div key={id}>
                     <div className="card-container">
                       <h1 className="card-header">{name}</h1>
-                      <span className="discount-amount">{discountAmount}</span>
+
                       <img
                         className="card-image"
                         src={`data:image/jpeg;base64,${image}`}
                         alt={name}
                       />
 
-                      <span className="card-old-price">
-                        {" "}
-                        {(
-                          Math.round(
-                            (price / (1 - parseInt(discountAmount) / 100)) * 100
-                          ) / 100
-                        ).toFixed(2)}{" "}
-                        $
-                      </span>
-                      <span className="card-new-price">
+                      <span className="card-price">
                         {" "}
                         {(Math.round(price * 100) / 100).toFixed(2)} $
                       </span>
+
                       <span className="card-type">{type}</span>
                       <span className="card-size">{size}</span>
-
                       <p className="card-paragraph">
-                        {ingredients.map((item) => {
+                        {ingredients.map((item, index) => {
                           return (
-                            <span className="ingredients-span">{item}</span>
+                            <span key={index} className="ingredients-span">
+                              {item}
+                            </span>
                           );
                         })}
                       </p>
+
                       <button
                         className="edit-btn"
                         onClick={() => {
@@ -208,56 +249,13 @@ const Dashboard = () => {
                         Remove
                       </button>
                     </div>
-                  ) : (
-                    <div key={id}>
-                      <div className="card-container">
-                        <h1 className="card-header">{name}</h1>
-
-                        <img
-                          className="card-image"
-                          src={`data:image/jpeg;base64,${image}`}
-                          alt={name}
-                        />
-
-                        <span className="card-price">
-                          {" "}
-                          {(Math.round(price * 100) / 100).toFixed(2)} $
-                        </span>
-
-                        <span className="card-type">{type}</span>
-                        <span className="card-size">{size}</span>
-                        <p className="card-paragraph">
-                          {ingredients.map((item) => {
-                            return (
-                              <span className="ingredients-span">{item}</span>
-                            );
-                          })}
-                        </p>
-
-                        <button
-                          className="edit-btn"
-                          onClick={() => {
-                            setShowModal(!showModal);
-                            EditProduct(id);
-                          }}
-                        >
-                          Edit
-                        </button>
-                        <button
-                          onClick={() => DeleteProduct(id)}
-                          className="remove-btn"
-                        >
-                          Remove
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
-      )}
+      </div>
     </>
   );
 };

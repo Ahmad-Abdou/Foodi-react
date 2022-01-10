@@ -4,34 +4,24 @@ import "../styles/Home.css";
 import Sidebar from "./Sidebar";
 import Products from "./Products";
 import Navigationbar from "./Navigationbar";
-import Fotter from "./Fotter";
-import { useProductContext } from "../store/ProductContext";
-import Loading from "../components/Loading";
 const Home = () => {
-  const { loading } = useProductContext();
   return (
     <>
-      {loading ? (
-        <Loading></Loading>
-      ) : (
-        <div>
-          <div className="home-container">
-            <h1 className="home-header">Foodi</h1>
-            <a href="#products" className="order-btn">
-              Order
-            </a>
-          </div>
-          <Navigationbar></Navigationbar>
-          <Sidebar />
-
-          <a className="scrolling-page" name="products">
-            {" "}
-            <Products name="#products" />
+      <div>
+        <div className="home-container">
+          <h1 className="home-header">Foodi</h1>
+          <a href="#products" className="order-btn">
+            Order
           </a>
-
-          <Fotter></Fotter>
         </div>
-      )}
+        <Navigationbar></Navigationbar>
+        <Sidebar />
+
+        <a className="scrolling-page" name="products">
+          {" "}
+          <Products name="#products" />
+        </a>
+      </div>
     </>
   );
 };

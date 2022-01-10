@@ -5,6 +5,13 @@ import axios from "axios";
 const ProductProvider = createContext();
 const ProductContext = ({ children }) => {
   const [products, setProducts] = useState([]);
+  const [noDuplicateProducts, setNoDuplicateProducts] = useState([]);
+  const [orderID, setOrderID] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [delivery, setDelivery] = useState(false);
+  const [cartEmpty, IsCartEmpty] = useState(false);
+  const [notification, setNotification] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [newProduct, setnewProduct] = useState({
     name: "",
     price: "",
@@ -13,14 +20,6 @@ const ProductContext = ({ children }) => {
     size: "",
     ingredients: [],
   });
-  const [selectedProduct, setSelectedProduct] = useState([]);
-  const [noDuplicateProducts, setNoDuplicateProducts] = useState([]);
-  const [orderID, setOrderID] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [delivery, setDelivery] = useState(false);
-  const [cartEmpty, IsCartEmpty] = useState(false);
-  const [notification, setNotification] = useState(false);
-  const [showModal, setShowModal] = useState(false);
   const [editingdProduct, setEditingdProduct] = useState({
     id: "",
     image: "",
@@ -29,13 +28,6 @@ const ProductContext = ({ children }) => {
     discountAmount: 0.0,
     discount: "NO",
   });
-
-  const getprice = noDuplicateProducts.reduce((previous, current) => {
-    let singleItem = current.price * current.quantity;
-    let sum = singleItem + previous;
-    return Math.round(sum * 100) / 100;
-  }, 0);
-
   const [userInfo, setUserInfo] = useState({
     firstName: "",
     lastName: "",
@@ -44,59 +36,31 @@ const ProductContext = ({ children }) => {
     zipCode: "",
     address: "",
     delivery: delivery,
-    itemList: noDuplicateProducts,
-    totalPrice: getprice,
+    itemList: [],
+    totalPrice: 0,
     date: "",
   });
+  const getprice = noDuplicateProducts.reduce((previous, current) => {
+    let singleItem = current.price * current.quantity;
+    let sum = singleItem + previous;
+    return Math.round(sum * 100) / 100;
+  }, 0);
 
   const EditProduct = (id) => {
     let myProduct = products.find((product) => product.id === id);
+
     setEditingdProduct(myProduct);
   };
-
-  const submitOrder = () => {
-    setLoading(true);
-    axios
-      .post("http://localhost:8080/api/v1/order", userInfo)
-      .then((response) => {
-        setOrderID(response.data.orderId);
-        if (delivery === true) {
-          setUserInfo({
-            ...userInfo,
-            totalPrice: getprice + 4.99,
-            delivery: true,
-            date: new Date().toLocaleString() + "",
-          });
-        } else {
-          setUserInfo({
-            ...userInfo,
-            totalPrice: getprice + 0,
-            delivery: false,
-            date: new Date().toLocaleString() + "",
-          });
-        }
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
   const addingProduct = (id) => {
     const newProduct = products.find((myProduct) => myProduct.id === id);
-    setSelectedProduct([...selectedProduct, newProduct]);
-    setNoDuplicateProducts([...new Set([...selectedProduct, newProduct])]);
+    setNoDuplicateProducts([...new Set([...noDuplicateProducts, newProduct])]);
+    setUserInfo({
+      ...userInfo,
+      itemList: [...new Set([...noDuplicateProducts, newProduct])],
+    });
     IsCartEmpty(true);
     setNotification(true);
   };
-  useEffect(() => {
-    let timer1 = setTimeout(() => {
-      setNotification(false);
-    }, 3000);
-    return () => {
-      clearTimeout(timer1);
-    };
-  }, [notification]);
 
   const fetchProducts = () => {
     setLoading(true);
@@ -110,6 +74,14 @@ const ProductContext = ({ children }) => {
         console.error(err);
       });
   };
+  useEffect(() => {
+    let timer1 = setTimeout(() => {
+      setNotification(false);
+    }, 3000);
+    return () => {
+      clearTimeout(timer1);
+    };
+  }, [notification, delivery]);
 
   useEffect(() => {
     fetchProducts();
@@ -120,12 +92,10 @@ const ProductContext = ({ children }) => {
       value={{
         products,
         addingProduct,
-        selectedProduct,
         noDuplicateProducts,
         setNoDuplicateProducts,
         getprice,
         userInfo,
-        submitOrder,
         setUserInfo,
         orderID,
         loading,
@@ -143,6 +113,7 @@ const ProductContext = ({ children }) => {
         newProduct,
         setnewProduct,
         setProducts,
+        setOrderID,
       }}
     >
       {children}

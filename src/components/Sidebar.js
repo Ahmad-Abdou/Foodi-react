@@ -48,14 +48,14 @@ const Sidebar = () => {
 
               <h3>Sum : {Math.round((getprice + 4.99) * 100) / 100} $</h3>
               <Link to="/cart">
-                <button className="btn checkout-btn">Checkout</button>
+                <button className="btn checkout-btn"> Proceed</button>
               </Link>
             </div>
           ) : (
             <div className="sidebar-footer">
               <h3>Sum : {Math.round(getprice * 100) / 100} $</h3>
               <Link to="/cart">
-                <button className="btn checkout-btn">Checkout</button>
+                <button className="btn checkout-btn"> Proceed</button>
               </Link>
             </div>
           )}

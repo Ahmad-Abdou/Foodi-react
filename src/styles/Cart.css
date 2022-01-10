@@ -21,41 +21,19 @@
 .cart-header-text-container {
   text-align: center;
   display: grid;
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   grid-template-columns: repeat(3, 1fr);
 }
-.span-text {
+.cart-span-text {
   grid-row: 1;
-  grid-column: 2/3;
-  font-size: 30px;
+  grid-column: 2;
+  font-size: 29px;
   text-align: center;
   color: #c70039;
-  text-shadow: 2px 2px 3px black;
+  text-shadow: 1px 1px 3px black;
+  width: 100%;
 }
-@media screen and (max-width: 998px) {
-  .span-text {
-    font-size: 20px;
-  }
-}
-@media screen and (max-width: 768px) {
-  .span-text {
-    font-size: 15px;
-  }
-  .grid-row-1,
-  .grid-row-2,
-  .grid-row-3,
-  .grid-row-4,
-  .grid-row-5,
-  .grid-row-6 {
-    font-size: 10px;
-  }
-  .check-location-btn {
-    font-size: 10px;
-  }
-  .check-location-btn:before {
-    font-size: 7px;
-  }
-}
+
 .cart-form-item {
   font-size: 20px;
 }
@@ -113,6 +91,7 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(5, 1fr);
 }
+
 .cart-items {
   grid-row: 2/3;
   grid-column: 1/4;
@@ -169,13 +148,14 @@
   font-weight: 700;
   transition: all 0.3s;
   box-shadow: 3px 3px 10px black;
+  text-shadow: 3px 3px 3px black;
 }
 .link-position {
   grid-column: 2/3;
   grid-row: 2;
 }
-
-.proceed-btn {
+.proceed-btn,
+.proceed-btn-disabled {
   padding: 10px;
   border: none;
   background-color: #c70039;
@@ -188,7 +168,11 @@
   position: relative;
   transition: all 0.3s;
   box-shadow: 3px 3px 10px black;
+  text-shadow: 3px 3px 3px black;
   grid-row: 2;
+}
+.proceed-btn-disabled {
+  background-color: #9c9a9b;
 }
 
 .check-location-btn:hover,
@@ -204,6 +188,7 @@
   top: -400%;
   left: -20%;
   background-color: rgb(255, 255, 255);
+  text-shadow: 1px 1px 3px black;
   color: #c70039;
   display: flex;
   justify-content: center;
@@ -248,4 +233,41 @@
   opacity: 1;
   height: 100%;
   transition: all 0.5s 0.5s;
+}
+@media screen and (max-width: 998px) {
+  .cart-span-text {
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .cart-span-text {
+    font-size: 15px;
+  }
+  .grid-row-1,
+  .grid-row-2,
+  .grid-row-3,
+  .grid-row-4,
+  .grid-row-5,
+  .grid-row-6 {
+    font-size: 10px;
+  }
+
+  .check-location-btn {
+    font-size: 10px;
+  }
+  .check-location-btn:before {
+    font-size: 7px;
+  }
+}
+@media screen and (max-width: 680px) {
+  .grid-row-5 {
+    grid-column: 3/5;
+    position: relative;
+    grid-row: 3;
+  }
+  .grid-row-7 {
+    grid-column: 3/5;
+    position: relative;
+    grid-row: 4;
+  }
 }

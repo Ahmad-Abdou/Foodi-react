@@ -31,10 +31,8 @@ const Modal = () => {
         config
       )
       .then((response) => {
-        console.log(response.data);
         setIsEdited(true);
         window.location.reload(false);
-
         setTimeout(() => {
           setIsEdited(false);
         }, 3000);
@@ -62,7 +60,6 @@ const Modal = () => {
         config
       )
       .then((response) => {
-        console.log(response.data);
         setIsEdited(true);
         window.location.reload(false);
         setTimeout(() => {

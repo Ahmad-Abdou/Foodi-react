@@ -1,23 +1,53 @@
 .dashboard-container {
-  height: 100vh;
   width: 85%;
   background-position: center;
   background-size: cover;
   position: relative;
-  left: 15%;
+  left: 5%;
   display: grid;
   grid-template-rows: repeat(2, 1fr);
-  gap: 30px;
+  grid-template-columns: repeat(5, 1fr);
   padding: 10px;
+  background-color: rgb(252, 233, 233);
+}
+.dashboard-form-container {
+  grid-row: 1;
+  grid-column: 1/6;
+  display: grid;
+  gap: 30px;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(5, 1fr);
+}
+.dashboard-form-add-items {
+  display: grid;
+  position: relative;
+  padding: 20px;
+  width: 100%;
+  height: 55vh;
+  font-size: 18px;
+  box-shadow: 5px 5px 5px black;
+  color: black;
+  text-transform: uppercase;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 10px;
+  grid-row: 2;
+  grid-column: 1/6;
 }
 .all-dashboard-items-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  grid-row: 2;
+  grid-column: 1/4;
   gap: 30px;
 }
-
-@media only screen and (max-width: 1600px) {
+.dashboard-chart {
+  grid-row: 1;
+  grid-column: 2/6;
+}
+@media only screen and (max-width: 1500px) {
   .all-dashboard-items-container {
+    grid-row: 3;
     grid-template-columns: repeat(4, 1fr);
   }
 }
@@ -34,29 +64,44 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .dashboard-container {
-    top: 3%;
-    left: 0;
+  .dashboard-form-container {
+    grid-template-rows: repeat(5, 1fr);
+  }
+  .all-dashboard-items-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .dashboard-chart {
+    grid-row: 2;
+    width: 80vw;
+  }
+  .dashboard-form-add-items {
+    padding: 0px;
+    gap: 0;
+    font-size: 15px;
+    height: 28vh;
+    grid-row: 3;
+  }
+}
+@media only screen and (max-width: 568px) {
+  .dashboard-form-container {
+    grid-template-rows: repeat(3, 1fr);
+  }
+  .dashboard-chart {
+    grid-row: 2;
+    width: 80vw;
+  }
+  .dashboard-form-add-items {
+    padding: 0px;
+    gap: 0;
+    font-size: 15px;
+    height: 25vh;
+    grid-row: 3;
+  }
+  .all-dashboard-items-container {
+    grid-column: 4;
   }
 }
 
-.dashboard-form-add-items {
-  display: grid;
-  padding: 20px;
-  width: 80%;
-  left: 10%;
-  height: 50vh;
-  font-size: 18px;
-  box-shadow: 5px 5px 5px black;
-  position: relative;
-  color: black;
-  text-transform: uppercase;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(6, 1fr);
-  gap: 30px;
-  grid-row: 1;
-  grid-column: 1/5;
-}
 .edit-btn {
   position: absolute;
   bottom: 0;

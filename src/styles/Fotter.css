@@ -4,13 +4,13 @@
   grid-template-columns: repeat(5, 1fr);
   background-color: #c70039;
   color: white;
-  height: 20%;
+  height: 10%;
   text-align: center;
   gap: 10px;
   letter-spacing: 2px;
   font-weight: 600;
-  position: absolute;
-  top: 200%;
+  position: relative;
+  bottom: 0%;
   width: 100%;
 }
 @media screen and (max-width: 1450px) {

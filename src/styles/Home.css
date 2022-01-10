@@ -56,8 +56,8 @@
   .home-header {
     font-size: 30px;
     letter-spacing: 20px;
-    left: 30%;
-    top: 20%;
+    left: 34%;
+    top: 25%;
   }
 }
 @media screen and (max-width: 320px) {

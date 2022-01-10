@@ -1,19 +1,14 @@
 import React from "react";
 import { GrDeliver, GrHome } from "react-icons/gr";
 import "../styles/Order.css";
-
 import { useProductContext } from "../store/ProductContext";
 import Timer from "../components/Timer";
-import Loading from "../components/Loading";
 const Order = () => {
-  const { orderID, userInfo, noDuplicateProducts, loading, delivery } =
+  const { orderID, userInfo, noDuplicateProducts, delivery } =
     useProductContext();
-
   return (
     <>
-      {loading ? (
-        <Loading />
-      ) : (
+      {orderID.length > 0 ? (
         <div className="order-container">
           <span className="order-header-text">Thanks for Your Order</span>
           <span></span>
@@ -54,7 +49,10 @@ const Order = () => {
                     <span className="grid-order-item-col-1">{name}</span>{" "}
                     <span className="grid-order-item-col-2"> {quantity}</span>{" "}
                     <span className="grid-order-item-col-3"> *</span>
-                    <span className="grid-order-item-col-4"> {price}$</span>
+                    <span className="grid-order-item-col-4">
+                      {" "}
+                      {(Math.round(price * 100) / 100).toFixed(2)} $
+                    </span>
                   </div>
                 );
               })}
@@ -70,7 +68,10 @@ const Order = () => {
               <div className="grid-order-border-top">
                 <div className="total-price-container">
                   Total Price :
-                  <span className="total-price"> {userInfo.totalPrice}$</span>
+                  <span className="total-price">
+                    {" "}
+                    {(Math.round(userInfo.totalPrice * 100) / 100).toFixed(2)} $
+                  </span>
                 </div>
               </div>
             </div>
@@ -87,6 +88,15 @@ const Order = () => {
               <GrHome className="home-icon"></GrHome>
             </section>
           </div>
+          <div className="grid-order-back-to-home-container">
+            <a href="/" className="error-btn">
+              <span className="error-btn-text">Back To Home</span>{" "}
+            </a>
+          </div>
+        </div>
+      ) : (
+        <div className="order-container">
+          <span className="order-header-text">There are no orders</span>
           <div className="grid-order-back-to-home-container">
             <a href="/" className="error-btn">
               <span className="error-btn-text">Back To Home</span>{" "}
